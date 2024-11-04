@@ -28,7 +28,7 @@ func (s *MainScene) Show() {
 
 	rectangle := canvas.NewRectangle(color.Transparent)
 	rectangle.StrokeWidth = 2
-	rectangle.StrokeColor = color.White
+	rectangle.StrokeColor = color.RGBA{150, 237, 52, 255}
 	rectangleW := 690
 	rectangleH := 170
 	rectangleX := 0
@@ -36,7 +36,19 @@ func (s *MainScene) Show() {
 	rectangle.Resize(fyne.NewSize(float32(rectangleW), float32(rectangleH)))
 	rectangle.Move(fyne.NewPos(float32(rectangleX), float32(rectangleY)))
 
-	gate := canvas.NewRectangle(color.White)
+	positionRectangleX := 30
+	
+	for i:= 0; i<20; i++{
+		rectangleParking := canvas.NewRectangle(color.Transparent)
+		rectangleParking.StrokeWidth = 1
+		rectangleParking.StrokeColor = color.White
+		rectangleParking.Resize(fyne.NewSize(float32(30), float32(40)))
+		rectangleParking.Move(fyne.NewPos(float32(positionRectangleX), float32(10)))
+		carsContainer.Add(rectangleParking)
+		positionRectangleX += 30
+	}
+
+	gate := canvas.NewRectangle(color.RGBA{215, 236, 51, 255})
 	gateW := 150
 	gateH := 10
 	gateX := (rectangleW / 2) - (gateW / 2)
@@ -51,7 +63,6 @@ func (s *MainScene) Show() {
 		s.Run()
 	})
 
-	
 	content := container.NewVBox(
 		startButton,
 		carsContainer,
